@@ -1,11 +1,16 @@
 import React from 'react';
+import { useState } from 'react';
 
 function App() {
+  const [billAmount, setBillAmount] = useState(0);
+  const [yourTip, setYourTip] = useState(10);
+  const [otherTip, setOtherTip] = useState(10);
+
   return (
     <form>
-      <BillAmount />
-      <YourTip />
-      <FriendsTip />
+      <BillAmount billAmount={billAmount} setBillAmount={setBillAmount} />
+      <YourTip yourTip={yourTip} setYourTip={setYourTip}/>
+      <OtherTip otherTip={otherTip} setOtherTip={setOtherTip} />
       <FinalAmount />
       <Button />
     </form>
@@ -14,40 +19,73 @@ function App() {
 
 export default App;
 
-function BillAmount() {
+function BillAmount({ billAmount, setBillAmount }) {
+  const handleBillAmountChange = (event) => {
+    setBillAmount(event.target.value);
+    alert(event.target.value);
+  };
+
   return (
     <div>
       <label htmlFor="amount">How much was the bill?</label>
-      <input type="text" name="amount" id="amount" required />
+      <input
+        type="text"
+        name="amount"
+        id="amount"
+        required
+        value={billAmount} // Używamy wartości przekazanej jako props
+        onChange={handleBillAmountChange}
+      />
     </div>
   );
 }
 
-function YourTip() {
+
+function YourTip({ yourTip, setYourTip }) {
+  const handleYourTipChange = (evnt) => {
+    setYourTip(evnt.target.value);
+    alert(evnt.target.value);
+  }
+
   return (
     <div>
       <label htmlFor="you">How did you like the service?</label>
-      <select name="you" id="you">
+      <select 
+        name="you" 
+        id="you"
+        onChange={handleYourTipChange}
+        value={yourTip}
+      >
         <option value="0">Weak 0%</option>
-        <option value="1">Average 5%</option>
-        <option value="2">Good 10%</option>
-        <option value="3">Very Good 15%</option>
-        <option value="4">Amazing 20%</option>
+        <option value="5">Average 5%</option>
+        <option value="10">Good 10%</option>
+        <option value="15">Very Good 15%</option>
+        <option value="20">Amazing 20%</option>
       </select>
     </div>
   );
 }
 
-function FriendsTip() {
+function OtherTip({ otherTip, setOtherTip }) {
+  const handleOtherTipChange = (evnt) => {
+    setOtherTip(evnt.target.value);
+    alert(evnt.target.value);
+  }
+
   return (
     <div>
-      <label htmlFor="friend">How did your friend like the service?</label>
-      <select name="friend" id="friend">
+      <label htmlFor="you">How did you like the service?</label>
+      <select 
+        name="you" 
+        id="you"
+        onChange={handleOtherTipChange}
+        value={otherTip}
+      >
         <option value="0">Weak 0%</option>
-        <option value="1">Average 5%</option>
-        <option value="2">Good 10%</option>
-        <option value="3">Very Good 15%</option>
-        <option value="4">Amazing 20%</option>
+        <option value="5">Average 5%</option>
+        <option value="10">Good 10%</option>
+        <option value="15">Very Good 15%</option>
+        <option value="20">Amazing 20%</option>
       </select>
     </div>
   );
