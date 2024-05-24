@@ -3,22 +3,58 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <form>
+      <label for="amount">
+        How much was the bill?
+      </label>
+
+      <input
+        type="text"
+        name="amount"
+        id="amunt"
+        required
+      ></input>
+
+      <br></br>
+
+      <label for="you">
+        How did you like the service?
+      </label>
+
+      <select name="you" id="you">
+        <option value="0">Week 0%</option>
+        <option value="1">Average 5%</option>
+        <option value="2">Good 10%</option>
+        <option value="3">Very Good 15%</option>
+        <option value="4">Amazing 20%</option>
+      </select>
+
+      <br></br>
+
+      <label for="friend">
+        How did your friend like the service?
+      </label>
+
+      <select name="friend" id="you">
+        <option value="0">Week 0%</option>
+        <option value="1">Average 5%</option>
+        <option value="2">Good 10%</option>
+        <option value="3">Very Good 15%</option>
+        <option value="4">Amazing 20%</option>
+      </select>
+
+      <br></br>
+
+      <div>
+        <strong>You pay X$ ($X + $Y tip)</strong>
+      </div>
+
+      <br></br>
+
+      <button>
+        Reset
+      </button>
+    </form>
   );
 }
 
