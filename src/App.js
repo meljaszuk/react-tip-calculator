@@ -11,7 +11,7 @@ function App() {
       <BillAmount billAmount={billAmount} setBillAmount={setBillAmount} />
       <YourTip yourTip={yourTip} setYourTip={setYourTip}/>
       <OtherTip otherTip={otherTip} setOtherTip={setOtherTip} />
-      <FinalAmount />
+      <FinalAmount otherTip={otherTip} billAmount={billAmount}  yourTip={yourTip}/>
       <Button />
     </form>
   );
@@ -20,9 +20,8 @@ function App() {
 export default App;
 
 function BillAmount({ billAmount, setBillAmount }) {
-  const handleBillAmountChange = (event) => {
-    setBillAmount(event.target.value);
-    alert(event.target.value);
+  const handleBillAmountChange = (evnt) => {
+    setBillAmount(Number(evnt.target.value));
   };
 
   return (
@@ -43,8 +42,7 @@ function BillAmount({ billAmount, setBillAmount }) {
 
 function YourTip({ yourTip, setYourTip }) {
   const handleYourTipChange = (evnt) => {
-    setYourTip(evnt.target.value);
-    alert(evnt.target.value);
+    setYourTip(Number(evnt.target.value));
   }
 
   return (
@@ -68,8 +66,7 @@ function YourTip({ yourTip, setYourTip }) {
 
 function OtherTip({ otherTip, setOtherTip }) {
   const handleOtherTipChange = (evnt) => {
-    setOtherTip(evnt.target.value);
-    alert(evnt.target.value);
+    setOtherTip(Number(evnt.target.value));
   }
 
   return (
@@ -91,10 +88,12 @@ function OtherTip({ otherTip, setOtherTip }) {
   );
 }
 
-function FinalAmount() {
+function FinalAmount({billAmount, yourTip, otherTip}) {
+  const totalAmount = (billAmount + yourTip /100 * billAmount + otherTip/100 * billAmount).toFixed(2)
+
   return (
     <div>
-      <strong>You pay X$ ($X + $Y tip)</strong>
+      <strong>You pay ${totalAmount}</strong>
     </div>
   );
 }
