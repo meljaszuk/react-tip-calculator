@@ -12,7 +12,7 @@ function App() {
       <YourTip yourTip={yourTip} setYourTip={setYourTip}/>
       <OtherTip otherTip={otherTip} setOtherTip={setOtherTip} />
       <FinalAmount otherTip={otherTip} billAmount={billAmount}  yourTip={yourTip}/>
-      <Button />
+      <Button setBillAmount={setBillAmount}/>
     </form>
   );
 }
@@ -98,8 +98,14 @@ function FinalAmount({billAmount, yourTip, otherTip}) {
   );
 }
 
-function Button() {
+function Button({setBillAmount}) {
+  const handleReset = (evnt) => {
+    setBillAmount = 0;
+  }
   return (
-    <button type="reset">Reset</button>
+    <button 
+      onClick={handleReset}>
+        Reset
+      </button>
   );
 }
